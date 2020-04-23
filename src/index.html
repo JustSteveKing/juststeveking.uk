@@ -17,19 +17,6 @@
       d.getElementsByTagName("head")[0].appendChild(s);
     })();
   </script>
-
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    }
-  </script>
-
   ${app}
   ${scripts}
 </body>
