@@ -1,3 +1,35 @@
 backend:
     name: git-gateway
-    branch: master # Branch to update (optional; defaults to master)
+  media_folder:  "static/images/uploads"
+  public_folder: "/images/uploads"
+  collections:
+    - name: "posts"
+      label: "Posts"
+      folder: "content/posts"
+      create: true
+      slug: "{{slug}}"
+      extension: "md"
+      fields:
+        - label: "Post Title"
+          name: "title"
+          widget: "string"
+
+        - label: "Post Date"
+          name: "date"
+          widget: "date"
+
+        - label: "Post Author"
+          name: "author"
+          widget: "string"
+
+        - label: "Post Description - keep this short"
+          name: "description"
+          widget: "text"
+
+        - label: "Post Tags"
+          name: "tags"
+          widget: "list"
+
+        - label: "Cover Image"
+          name: "cover"
+          widget: "image"
