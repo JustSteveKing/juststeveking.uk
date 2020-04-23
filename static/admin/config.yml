@@ -1,8 +1,8 @@
 backend:
-    name: git-gateway
-  media_folder:  "static/images/uploads"
-  public_folder: "/images/uploads"
-  collections:
+  name: git-gateway
+media_folder:  "static/images/uploads"
+public_folder: "/images/uploads"
+collections:
     - name: "posts"
       label: "Posts"
       folder: "content/posts"
