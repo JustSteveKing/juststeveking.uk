@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ${htmlAttrs}>
+
+<head>
+  ${head}
+</head>
+
+<body ${bodyAttrs}>
+  <script>
+    window.$crisp = [];
+    window.CRISP_WEBSITE_ID = "491dbe8b-afd0-4f6e-942c-68daba40ce11";
+    (function () {
+      let d = document;
+      let s = d.createElement("script");
+      s.src = "https://client.crisp.chat/l.js";
+      s.async = 1;
+      d.getElementsByTagName("head")[0].appendChild(s);
+    })();
+  </script>
+
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+
+  ${app}
+  ${scripts}
+</body>
+
+</html>
