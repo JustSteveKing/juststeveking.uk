@@ -33,3 +33,7 @@ collections:
         - label: "Cover Image"
           name: "cover"
           widget: "image"
+
+        - label: "Post Content"
+          name: "content"
+          widget: "markdown"
