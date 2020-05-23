@@ -1,5 +1,5 @@
 ---
-title: ParamterBag - My latest open source package
+title: ParameterBag - My latest open source package
 date: 2020-05-23T20:16:20.674Z
 author: JustSteveKing
 description: "Introducing my latest PHP Package: ParamterBag - A flexible
