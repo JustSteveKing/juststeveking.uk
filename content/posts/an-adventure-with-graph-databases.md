@@ -8,7 +8,7 @@ description: Recently I have been super interested in graph databases, most
 tags:
   - php
   - neo4j
-  - packages
+  - package
   - open source
 cover: /images/uploads/leone-venter-mtkxssscrzw-unsplash.jpg
 content: >-
