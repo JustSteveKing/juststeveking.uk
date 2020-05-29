@@ -2,7 +2,7 @@ import DefaultLayout from '~/layouts/Default.vue';
 import SiteHeader from '~/components/SiteHeader.vue';
 import SiteFooter from '~/components/SiteFooter.vue';
 
-import '~/assets/css/prism-material-oceanic.css';
+import 'prismjs/themes/prism.css'
 
 export default function (Vue, { router, head, isClient }) {
   Vue.component('Layout', DefaultLayout);
