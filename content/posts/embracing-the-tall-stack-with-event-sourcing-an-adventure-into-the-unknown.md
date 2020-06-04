@@ -295,7 +295,7 @@ content: >-
 
 
 
-  ```phtml
+  ```php
 
   <?php
 
