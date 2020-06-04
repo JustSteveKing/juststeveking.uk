@@ -207,8 +207,6 @@ content: >-
   The next part we need to do is not only create a projection, but also we are going to want to have reactors so that we can react when events happen. Let's start with our projection which wil be stored at `app/Context/User/Projectors/UserProjector.php` and look something like this:
 
 
-
-
   ```php
 
   <?php
@@ -250,20 +248,13 @@ content: >-
       }
   }
 
-
   ```
-
-
 
 
   What this Projector is doing as you can probably see, is using an Eloquent model writing our user into the database, using the attributes that we attached onto our UserCreated Event. Simple right? We ask our aggreate to send an event with some data, this data is then projected into the database while we store the fact that we just did something. So we have a user, we could stop here and implement the TALL stack element, but I would rather do that after we have set everything up. 
 
 
-
-
   Next, our reactor. Typically when a user is created on a system we want to send them an email welcoming them or ask them to confirm their email or anything like that. In this example we are going to ask them to verify their email using a reactor, this will be stored at `app/Context/User/Reactors/UserCreatedReactor.php` and look like the below:
-
-
 
 
   ```php
@@ -296,10 +287,7 @@ content: >-
       }
   }
 
-
   ```
-
-
 
 
   Using default Laravel behaviour we can now send an email notification over to the user that was just created asking them to verify their email. We have now come full circle! We will need to create a ServiceProvider in Laravel to tell the framework to listen and how to route these events and aggregates but that is relatively simple, you could either add this to your AppServiceProvider or create a specific service provider - I lean towards the latter:
@@ -349,7 +337,6 @@ content: >-
       }
   }
 
-
   ```
 
 
@@ -363,11 +350,7 @@ content: >-
   Now we have all of the main event sourcing aspects put together, it is time to hook up the LiveWire components to actually start triggering these events. Now this part is not perfect, and is only an example, but as a system scales this is where we may start seeing issues. What we do in our LiveWire component is ask our UserAggregate to trigger an event and persist the event however, if our system comes under heavy load this write may take awhile so our user will not be available to be logged in - one option here it to notify the user to verify their email before they can log in (probably a good idea), but what this demo does is simply trigger and log in because I am working locally so there is no load - these events and writes as fast!
 
 
-
-
   So all of the livewire set up would have been done for you by installing and using the TALL preset, which is great, the next step to take is to change the default behaviour in this component found here `app/Http/Livewire/Auth/Register.php` and update the register method to the following code:
-
-
 
 
   ```php
@@ -426,25 +409,16 @@ content: >-
       }
   }
 
-
   ```
-
-
 
 
   So what we are doing here, when we ask the LiveWire component to register through our front end it will send a request to our back end using the native `fetch()` API, the library will take care of routing this request to the right place. Our first step of course is to validate the "request" as if it were a typical HTTP request (unfortunately no FormRequets here, which would be amazing), then we need to create a UUID for our aggregate, and we also assign this to our user (I am not sure on this part, if it is a good practice or not - I will let the community decide that one). Once we have our UUId we can tell our Aggregate to (using to UUID we just created) record the fact that we are trigger the UserCreated event we made earlier. We pass through all the data required, **please note that we send over the hashed version of the password!** The last thing we want to do is send over the unencrpyted password to be stored as plain text in out events - it is just as bad as storing a plain text password normally, you wuoldn't do it - so don't do it here! We then persist this aggregate to the database, so we have a rollback point, and an event to replay should we need to. We then fetch the user using their UUID, which is a static method you will remeber adding to your User model. We log this user in and redirect back to our home route.
 
 
-
-
   It is that simple. Now I will be the first to say that this isn't perfect, it is mainly an experiment that I wanted to try after being inspired by a Spatie article and loving the TALL stack. Curiosity is a powerful tool, if you wonder if something should or could be done, try it! Experimentation is what makes technology moving forward. You never know something you try for fun could turn out to be a really good idea, never be scared to try things even if they may not work.
 
 
-
-
   To expand on the above approach, my eventual aim is to have this working across multiple contexts: some stateful and others not so much. Beyond the code you see above, I also managed to get this approach working for password resets, so that we can have rollback points if a users password changes and they dispute it not being them, but also email verification - this last one was more for fun. The code I used for this example is currently in a [GitHub repo](https://github.com/JustSteveKing/laravel-tall-eventsourcing-example) should you want to have a look over that instead.
-
-
 
 
   Thanks for reading! Why not drop me a tweet with your thoughts?
