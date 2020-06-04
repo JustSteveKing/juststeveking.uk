@@ -130,9 +130,3 @@ query Post ($path: String) {
 }
 </page-query>
 
-<style>
-.markdown > p {
-  margin: 1rem 0 1rem 0;
-}
-
-</style>
