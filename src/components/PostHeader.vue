@@ -2,7 +2,7 @@
   <header>
     <div
       v-if="post.cover"
-      class="post-cover overflow-hidden relative h-108"
+      class="post-cover overflow-hidden relative h-108 bg-black opacity-20"
     >
       <div
         class="max-w-xl md:max-w-3xl xl:max-w-4xl text-center px-6 absolute z-10"
