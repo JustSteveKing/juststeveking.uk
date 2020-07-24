@@ -52,11 +52,9 @@ content: >-
 
   # Set the entry point for our application
 
-  ENTRYPOINT go run cmd/api/server.go
+  ENTRYPOINT go run cmd/rest-api/server.go
 
   ```
-
-
 
 
   What we have here is a nice lightweight GoLang container for us to inject our API into. The next step is to create our **docker-compose.yml** file to define our services, I prefer using the docker-compose approach while building applications. Here is an example of my docker-compose file:
@@ -69,6 +67,7 @@ content: >-
 
   networks:
     api:
+
 
     
   services:
@@ -84,8 +83,6 @@ content: >-
       volumes:
       - ./:/app
   ```
-
-
 
 
   What we are doing here is creating a network for our REST API, creating a container and giving it a name, giving the container build instructions from our Dockerfile, and setting the container post and mounting volumes. I won't go into too much detail here, as this is a tutorial on GoLang not docker.
@@ -104,7 +101,7 @@ content: >-
   This step sets your working directory are the root for a Go module at the specified URL. Our next step is to look at the directory structure. There are many approaches to how you could do this, a lot of developers will tell you for something simple you should just use the flat structure where everything is in one root directory. **I do not like this approach**. I come from other programming languages where separation of concerns is often done through namespacing and directory separation. As you can probably already guess from my Dockerfile - I have a **cmd** directory as my entrypoint. Let me explain.
 
 
-  A Go program needs an entry script to run, you don't want one really big file called **main.go** where all you application code lives - this like any other language would be difficult to manage. My approach is to have 2 root directories: **cmd** and **pkg**. My CMD directory is the entrypoint to the application, I would usually structure it using: ` cmd/{ project-name }/server.go` so I have a command to run, inside of a project, which runs a server. If this was a CLI application I would change **server.go** to **cli.go** so it makes sense to any develop looking at the code.
+  A Go program needs an entry script to run, you don't want one really big file called **main.go** where all you application code lives - this like any other language would be difficult to manage. My approach is to have 2 root directories: **cmd** and **pkg**. My CMD directory is the entrypoint to the application, I would usually structure it using: `cmd/{ project-name }/server.go` so I have a command to run, inside of a project, which runs a server. If this was a CLI application I would change **server.go** to **cli.go** so it makes sense to any develop looking at the code.
 
 
   Our **pkg** directory is where we keep all the code for this package. This is a relatively common concept in the Go world, as each application is a package. From this point, the application code lives inside pkg. Some developers will repeat the project name approach inside the pkg directory, but I am not a fan of that. I am not deploying multiple packages in this project - just the one. The same could be said for the **cmd** directory - but I digress. I like what I like.
