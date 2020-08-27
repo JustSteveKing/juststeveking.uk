@@ -50,9 +50,9 @@ export default {
         { property: "og:title", content: this.$static.metadata.siteName },
         {
           property: "og:description",
-          content: this.$static.metadata.siteDescription
+          content: this.$static.metadata.siteDescription,
         },
-        { property: "og:url", content:this.$static.metadata.siteUrl },
+        { property: "og:url", content: this.$static.metadata.siteUrl },
         { property: "og:image", content: this.ogImageUrl },
 
         { name: "twitter:widgets:new-embed-design", content: "on" },
@@ -60,32 +60,32 @@ export default {
         { name: "twitter:title", content: this.$static.metadata.siteName },
         {
           name: "twitter:description",
-          content: this.$static.metadata.siteDescription
+          content: this.$static.metadata.siteDescription,
         },
         { name: "twitter:site", content: "@JustSteveKing" },
         { name: "twitter:creator", content: "@JustSteveKing" },
-        { name: "twitter:image", content: this.ogImageUrl }
-      ]
-    }
+        { name: "twitter:image", content: this.ogImageUrl },
+      ],
+    };
   },
   computed: {
-    config () {
-      return config
+    config() {
+      return config;
     },
-    ogImageUrl () {
-      return `${this.config.siteUrl}/images/juststeveking-card.png`
-    }
+    ogImageUrl() {
+      return `${this.config.siteUrl}/images/juststeveking-card.png`;
+    },
   },
   methods: {
     openChat() {
       if ($crisp.is("chat:closed")) {
-        $crisp.push(["do", "chat:open"])
+        $crisp.push(["do", "chat:open"]);
       }
-    }
+    },
   },
   components: {
-    PostItem
-  }
+    PostItem,
+  },
 };
 </script>
 

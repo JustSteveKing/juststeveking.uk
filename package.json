@@ -12,6 +12,7 @@
     "@gridsome/remark-prismjs": "^0.3.0",
     "@gridsome/source-filesystem": "^0.6.2",
     "@gridsome/transformer-remark": "^0.5.0",
+    "axios": "^0.20.0",
     "gridsome": "^0.7.0",
     "gridsome-plugin-rss": "^1.2.0",
     "gridsome-plugin-tailwindcss": "^2.2.46",

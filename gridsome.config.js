@@ -7,7 +7,8 @@ module.exports = {
   icon: {},
   templates: {
     Post: '/:title',
-    Tag: '/tags/:id'
+    Tag: '/tags/:id',
+    Talk: '/talks/:title'
   },
   plugins: [
     {
@@ -27,6 +28,13 @@ module.exports = {
             create: true
           }
         }
+      }
+    },
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        path: 'content/talks/**/*.md',
+        typeName: 'Talk'
       }
     },
     {
