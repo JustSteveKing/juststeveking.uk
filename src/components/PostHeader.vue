@@ -3,7 +3,7 @@
     <div
       v-if="post.cover"
       class="post-cover overflow-hidden relative h-108"
-      style="background-color: rgba(0, 0, 0, 0.3);"
+      :style="`background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73)), url(${post.cover}); background-size: cover; background-position: center center;`"
     >
       <div
         class="max-w-xl md:max-w-3xl xl:max-w-4xl text-center px-6 absolute z-10"
@@ -22,11 +22,6 @@
           </p>
         </div>
       </div>
-      <ClientOnly>
-        <parallax :speed-factor="speedFactor" :sectionHeight="80">
-          <g-image :src="post.cover" :alt="post.title" />
-        </parallax>
-      </ClientOnly>
     </div>
     <div v-else class="pt-24">
       <div class="max-w-xl md:max-w-3xl xl:max-w-4xl mx-auto text-center px-6">
@@ -53,18 +48,11 @@
 
 <script>
 import moment from "moment";
-import Parallax from "vue-parallaxy";
 export default {
   props: ["post"],
-  components: {
-    Parallax
-  },
   computed: {
     formattedPublishDate() {
       return moment(this.post.datetime).format("DD MMMM, YYYY");
-    },
-    speedFactor() {
-      return this.post.fullscreen ? 0.21 : 0.37;
     }
   }
 };
