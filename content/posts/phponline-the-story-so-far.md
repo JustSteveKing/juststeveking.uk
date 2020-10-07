@@ -3,7 +3,7 @@ title: PHP Online - The Story So Far
 date: 2020-10-07T10:00:00.088Z
 author: JustSteveKing
 description: >-
-    I have been working on community projects now for the past 3-4 years, and in that time I have noticed something. PHP Pnline is my answer to what I think the community needs.
+    I have been working on community projects now for the past 3-4 years, and in that time I have noticed something. PHP Online is my answer to what I think the community needs.
 tags:
     - php
     - community
