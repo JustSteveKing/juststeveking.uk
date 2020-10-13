@@ -89,7 +89,7 @@ content: >-
   Alternatively, you can build the object from a string as an alternative to \`parse_url\`:
 
 
-  ```
+  ```php
 
   use JustSteveKing\UriBuilder\Uri;
 
