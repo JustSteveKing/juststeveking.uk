@@ -16,6 +16,10 @@
         <g-link to="/talks" class="text-base leading-6 text-gray-500 hover:text-gray-900">
           Talks
         </g-link>
+        <div class="px-5 py-2">
+        <g-link to="/feed" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+          RSS
+        </g-link>
       </div>
     </nav>
     <div class="mt-8 flex justify-center">
