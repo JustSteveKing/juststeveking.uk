@@ -18,9 +18,9 @@
         </g-link>
       </div>
     <div class="px-5 py-2">
-        <g-link to="/feed.xml" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+        <a href="/feed.xml" class="text-base leading-6 text-gray-500 hover:text-gray-900">
           RSS
-        </g-link>
+        </a>
       </div>
     </nav>
     <div class="mt-8 flex justify-center">
