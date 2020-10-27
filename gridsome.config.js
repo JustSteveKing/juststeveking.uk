@@ -55,7 +55,7 @@ module.exports = {
         contentTypeName: 'Post',
         feedOptions: {
           title: 'JustSteveKing - Consultant CTO, Software Engineer, Community Advocate',
-          feed_url: 'https://www.juststeveking.uk/feed',
+          feed_url: 'https://www.juststeveking.uk/feed.xml',
           site_url: 'https://www.juststeveking.uk',
         },
         feedItemOptions: node => ({

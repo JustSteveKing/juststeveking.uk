@@ -16,8 +16,9 @@
         <g-link to="/talks" class="text-base leading-6 text-gray-500 hover:text-gray-900">
           Talks
         </g-link>
-        <div class="px-5 py-2">
-        <g-link to="/feed" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+      </div>
+    <div class="px-5 py-2">
+        <g-link to="/feed.xml" class="text-base leading-6 text-gray-500 hover:text-gray-900">
           RSS
         </g-link>
       </div>
