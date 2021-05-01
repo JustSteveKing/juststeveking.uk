@@ -268,7 +268,7 @@ content: >-
   As you can see, we are building up our request with our API token that we injected into our constructor. We then create our response. There are a few things we can do to improve this though.
 
 
-  Currently the exception thrown is a HTML exception, which may not be what we want. Also, we haev no retry policy or timeouts set. Lets refactor our Client class to implement these things:
+  Currently the exception thrown is a HTML exception, which may not be what we want. Also, we have no retry policy or timeouts set. Lets refactor our Client class to implement these things:
 
 
   ```php
