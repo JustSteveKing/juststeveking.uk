@@ -725,7 +725,7 @@ content: >-
   ```
 
 
-  Pretty simple right? All we want to do really is extend the Illuminate stand Collection so it can be extended at a later date.
+  Pretty simple right? All we want to do really is extend the Illuminate standard Collection so it can be extended at a later date.
 
 
   So we have created all of our DTOs, a Collection, an Action to handle the creation. Now we just need to update our Client itself to make over everything!
