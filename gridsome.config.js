@@ -44,12 +44,6 @@ module.exports = {
       },
     },
     {
-      use: '@gridsome/plugin-google-analytics',
-      options: {
-        id: 'UA-156915127-1',
-      },
-    },
-    {
       use: 'gridsome-plugin-rss',
       options: {
         contentTypeName: 'Post',
