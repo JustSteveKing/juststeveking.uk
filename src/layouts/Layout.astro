@@ -1,0 +1,30 @@
+---
+import Header from "@/components/Header.astro";
+import BlurCircle from "@/components/BlurCircle.astro";
+import { theme } from "@/consts";
+import SEOTags from "@/components/SEOTags.astro";
+import type { HeadTags } from "@/types";
+import { ViewTransitions } from 'astro:transitions';
+
+import "@/styles/tailwind.css";
+import "@/styles/article.css";
+
+export type Props = HeadTags;
+
+const headTags = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" transition:animate="none" class="h-full bg-slate-50 dark:bg-slate-900">
+  <SEOTags {...headTags} />
+
+  <ViewTransitions />
+  <body
+    class="mx-auto flex min-h-screen max-w-5xl flex-col gap-9 px-10 py-6 text-sm text-slate-900 dark:text-slate-50 md:gap-20"
+  >
+    <Header />
+    <BlurCircle position="top" color={theme.colors.blur.top} />
+    <BlurCircle position="bottom" color={theme.colors.blur.bottom} />
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,115 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets"
+
+import Layout from "@/layouts/Layout.astro";
+import SocialLinks from "@/components/SocialLinks.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import TalkCard from "@/components/TalkCard.astro";
+import Link from "@/components/Link.astro";
+import convertAsteriskToStrongTag from "@/utils/convertAsteriskToStrongTag";
+import { site } from "@/consts"
+
+const articles = (await getCollection("articles")).sort(function (first, second) {
+  return second.data.publishedAt.getTime() - first.data.publishedAt.getTime();
+});
+
+const talks = (await getCollection("talks"));
+
+---
+
+<Layout>
+  <main class="flex flex-col gap-20">
+    <article
+      class="flex flex-col gap-8 md:flex-row-reverse md:justify-end md:gap-12"
+    >
+      {
+        site.profile && (
+          <Image
+            src={site.profile}
+            class="w-1/4 self-center rounded-full"
+            alt="Avatar of JustSteveKing"
+            width="200"
+            height="200"
+          />
+        )
+      }
+
+      <div class="flex flex-col gap-8">
+        <h1 class="text-3xl text-neutral-100">
+          {site.title}
+        </h1>
+
+        <h2
+          class="w-auto max-w-[60ch] leading-6"
+          set:html={convertAsteriskToStrongTag(site.description)}
+        />
+
+        <SocialLinks />
+      </div>
+    </article>
+
+    <article class="flex flex-col gap-8">
+      <header class="flex w-full flex-row justify-between gap-2">
+        <h3 class="text-lg text-neutral-100">Latest articles</h3>
+        <Link href="/articles" label="See all articles" isUnderline target="_self" />
+      </header>
+      {articles.length === 0 && <p>Soon, stay connected 👀...</p>}
+
+      <section class="flex flex-col gap-4 md:flex-row md:flex-wrap">
+        {
+          articles.length !== 0 &&
+					articles
+              .slice(0, 2)
+              .map((article) => (
+                <ArticleCard
+                  publishedAt={article.data.publishedAt}
+                  title={article.data.title}
+                  description={article.data.description}
+                  slug={article.slug}
+                />
+              ))
+        }
+      </section>
+    </article>
+
+    <article class="flex flex-col gap-8">
+      <header class="flex w-full flex-row justify-between gap-2">
+        <h3 class="text-lg text-neutral-100">Latest talks</h3>
+        <Link href="/talks" label="See all talks" isUnderline target="_self" />
+      </header>
+      {talks.length === 0 && <p>Soon, stay connected 👀...</p>}
+
+      <section class="flex flex-col gap-4 md:flex-row md:flex-wrap">
+        {
+          talks.length !== 0 &&
+					talks
+              .slice(0, 2)
+              .map((talk) => (
+                <TalkCard
+                  publishedAt={talk.data.publishedAt}
+                  title={talk.data.title}
+                  description={talk.data.description}
+                  slug={talk.slug}
+                />
+              ))
+        }
+      </section>
+    </article>
+
+    <article class="flex flex-col gap-8">
+      <header class="flex w-full flex-row justify-between gap-2">
+        <h3 class="text-lg text-neutral-100">Get in touch</h3>
+      </header>
+      <p>
+        Email me at <Link
+          href={`mailto:${site.email}`}
+          label={site.email}
+        /> or follow me via my social links.
+      </p>
+
+      <SocialLinks />
+    </article>
+  </main>
+</Layout>

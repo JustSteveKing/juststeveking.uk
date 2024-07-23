@@ -1,0 +1,51 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import Layout from "@/layouts/Layout.astro";
+import formatDate from "@/utils/formatDate";
+
+export async function getStaticPaths() {
+  const talks = await getCollection("talks");
+
+  return talks.map((talk) => ({
+    params: { slug: talk.slug },
+    props: { talk },
+  }));
+}
+
+type Props = {
+  talk: CollectionEntry<"talks">;
+};
+
+const { talk } = Astro.props;
+const { Content } = await talk.render();
+---
+
+<Layout title={talk.data.title} description={talk.data.description}>
+  <main transition:animate="slide" class="article mx-auto flex w-full max-w-prose flex-col gap-4">
+    <header role="presentation">
+      <h1 class="text-3xl">
+        {talk.data.title}
+      </h1>
+      <p class="text-md italic opacity-75">
+        {formatDate(talk.data.publishedAt)}
+      </p>
+      <p class="italic">{talk.data.description}</p>
+    </header>
+
+    <Content />
+  </main>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {talk.data.images?.map((image, index) => (
+      <div class={`relative col-span-1 aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800 ${index % 2 ? 'rotate-2' : '-rotate-2'}`}>
+        <Image
+          src={image}
+          height={300}
+          width={200}
+          alt={`Photos from ${talk.data.title}`}
+          class="absolute inset-0 h-full w-full object-cover"
+        />
+      </div>
+    ))}
+  </div>
+</Layout>

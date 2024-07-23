@@ -1,0 +1,18 @@
+---
+import Link from "@/components/Link.astro";
+import { socials } from "@/consts";
+---
+
+<ul role="list" class="flex flex-row gap-2">
+  {
+    socials.map((social, index) => (
+      <>
+        <li>
+          <Link href={social.href} label={social.name} />
+        </li>
+
+        {socials.length - 1 !== index && <li>/</li>}
+      </>
+    ))
+  }
+</ul>
