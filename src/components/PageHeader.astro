@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string
+  message: string
+};
+
+const { title, message } = Astro.props
+---
+
+<div role="presentation" class="flex flex-col gap-8">
+  <h1 class="text-3xl">
+    { title }
+  </h1>
+
+  <h2 class="w-auto max-w-[60ch] leading-6">
+    { message }
+  </h2>
+</div>

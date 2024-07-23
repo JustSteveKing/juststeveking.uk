@@ -5,17 +5,16 @@ import { Image } from "astro:assets"
 import Layout from "@/layouts/Layout.astro";
 import SocialLinks from "@/components/SocialLinks.astro";
 import ArticleCard from "@/components/ArticleCard.astro";
-import ProjectCard from "@/components/ProjectCard.astro";
 import TalkCard from "@/components/TalkCard.astro";
 import Link from "@/components/Link.astro";
 import convertAsteriskToStrongTag from "@/utils/convertAsteriskToStrongTag";
-import { site } from "@/consts"
+import { site, articles, talks } from "@/consts"
 
-const articles = (await getCollection("articles")).sort(function (first, second) {
+const articleList = (await getCollection("articles")).sort(function (first, second) {
   return second.data.publishedAt.getTime() - first.data.publishedAt.getTime();
 });
 
-const talks = (await getCollection("talks"));
+const talkList = (await getCollection("talks"));
 
 ---
 
@@ -37,7 +36,7 @@ const talks = (await getCollection("talks"));
       }
 
       <div class="flex flex-col gap-8">
-        <h1 class="text-3xl text-neutral-100">
+        <h1 class="text-3xl">
           {site.title}
         </h1>
 
@@ -52,39 +51,43 @@ const talks = (await getCollection("talks"));
 
     <article class="flex flex-col gap-8">
       <header class="flex w-full flex-row justify-between gap-2">
-        <h3 class="text-lg text-neutral-100">Latest articles</h3>
+        <div class="">
+          <h3 class="text-xl">
+            {articles.title}
+          </h3>
+          <p class="mt-2 text-md leading-8 max-w-[60ch]">
+            {articles.description}
+          </p>
+        </div>
+
         <Link href="/articles" label="See all articles" isUnderline target="_self" />
       </header>
-      {articles.length === 0 && <p>Soon, stay connected 👀...</p>}
 
-      <section class="flex flex-col gap-4 md:flex-row md:flex-wrap">
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
         {
-          articles.length !== 0 &&
-					articles
-              .slice(0, 2)
-              .map((article) => (
-                <ArticleCard
-                  publishedAt={article.data.publishedAt}
-                  title={article.data.title}
-                  description={article.data.description}
-                  slug={article.slug}
-                />
-              ))
+          articleList.slice(0, 2).map((article) => (
+            <ArticleCard
+              publishedAt={article.data.publishedAt}
+              title={article.data.title}
+              description={article.data.description}
+              slug={article.slug}
+            />
+          ))
         }
       </section>
     </article>
 
     <article class="flex flex-col gap-8">
       <header class="flex w-full flex-row justify-between gap-2">
-        <h3 class="text-lg text-neutral-100">Latest talks</h3>
+        <h3 class="text-lg">Latest talks</h3>
         <Link href="/talks" label="See all talks" isUnderline target="_self" />
       </header>
-      {talks.length === 0 && <p>Soon, stay connected 👀...</p>}
+      {talkList.length === 0 && <p>Soon, stay connected 👀...</p>}
 
       <section class="flex flex-col gap-4 md:flex-row md:flex-wrap">
         {
-          talks.length !== 0 &&
-					talks
+          talkList.length !== 0 &&
+					talkList
               .slice(0, 2)
               .map((talk) => (
                 <TalkCard
@@ -100,7 +103,7 @@ const talks = (await getCollection("talks"));
 
     <article class="flex flex-col gap-8">
       <header class="flex w-full flex-row justify-between gap-2">
-        <h3 class="text-lg text-neutral-100">Get in touch</h3>
+        <h3 class="text-lg">Get in touch</h3>
       </header>
       <p>
         Email me at <Link

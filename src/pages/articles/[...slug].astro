@@ -17,19 +17,20 @@ type Props = {
 };
 
 const { article } = Astro.props;
-const { Content } = await article.render();
+const { Content } = (await article?.render());
+export const prerender = true;
 ---
 
-<Layout title={article.data.title} description={article.data.description}>
+<Layout title={article?.data.title} description={article?.data.description}>
   <main transition:animate="slide" class="article mx-auto flex w-full max-w-prose flex-col gap-4">
     <header role="presentation">
       <h1 class="text-3xl">
-        {article.data.title}
+        {article?.data.title}
       </h1>
       <p class="text-md italic opacity-75">
-        {formatDate(article.data.publishedAt)}
+        {formatDate(article?.data.publishedAt)}
       </p>
-      <p class="italic">{article.data.description}</p>
+      <p class="italic">{article?.data.description}</p>
     </header>
 
     <Content />

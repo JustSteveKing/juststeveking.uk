@@ -30,8 +30,8 @@ const pathname = removeTrailingSlash(Astro.url.pathname);
         <a
           href="/"
           class:list={{
-            ["hover:text-neutral-100"]: true,
-            ["text-neutral-100"]: pathname === "/",
+            ["hover:text-indigo-700 dark:hover:text-indigo-400"]: true,
+            ["text-indigo-700 dark:text-indigo-400"]: pathname === "/",
           }}>Home</a
         >
       </li>
@@ -40,8 +40,8 @@ const pathname = removeTrailingSlash(Astro.url.pathname);
         <a
           href="/articles"
           class:list={{
-            ["hover:text-neutral-100"]: true,
-            ["text-neutral-100"]: pathname === "/articles",
+            ["hover:text-indigo-700 dark:hover:text-indigo-400"]: true,
+            ["text-indigo-700 dark:text-indigo-400"]: pathname === "/articles",
           }}>Articles</a
         >
       </li>
@@ -50,8 +50,8 @@ const pathname = removeTrailingSlash(Astro.url.pathname);
         <a
           href="/talks"
           class:list={{
-            ["hover:text-neutral-100"]: true,
-            ["text-neutral-100"]: pathname === "/talks",
+            ["hover:text-indigo-700 dark:hover:text-indigo-400"]: true,
+            ["text-indigo-700 dark:text-indigo-400"]: pathname === "/talks",
           }}>Talks</a
         >
       </li>

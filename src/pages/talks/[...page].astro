@@ -1,0 +1,36 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import TalkCard from "@/components/TalkCard.astro";
+import PageHeader from "@/components/PageHeader.astro";
+
+import { talks } from "@/consts";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths({ paginate }) {
+  const data = (await getCollection("talks"))
+
+  return paginate(data, { pageSize: 2 });
+}
+const { page } = Astro.props;
+export const prerender = true;
+---
+
+<Layout title={talks.title} description={talks.description}>
+  <PageHeader
+    title={talks.title}
+    message={talks.description}
+  />
+  <section class="flex flex-col gap-4 md:flex-row md:flex-wrap">
+    { page?.data.map((talk) => (
+      <TalkCard
+        publishedAt={talk.data.publishedAt}
+        title={talk.data.title}
+        description={talk.data.description}
+        slug={talk.slug}
+      />
+    ))}
+  </section>
+
+  {page?.url.prev ? <a href={page?.url.prev}>Previous</a> : null}
+  {page?.url.next ? <a href={page?.url.next}>Next</a> : null}
+</Layout>

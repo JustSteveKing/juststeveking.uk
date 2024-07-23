@@ -1,39 +1,35 @@
-.article p {
+.prose p {
   @apply leading-7;
 }
 
-.article code {
+.prose code {
   @apply rounded-sm bg-neutral-800 px-1 py-[2px] text-orange-500;
 }
 
-.article h2 {
+.prose h2 {
   @apply mt-6 text-3xl text-neutral-100;
 }
 
-.article h3 {
+.prose h3 {
   @apply mt-4 text-xl text-neutral-100;
 }
 
-.article code {
-  @apply rounded-sm bg-neutral-800 px-1 py-[2px] text-red-500;
-}
-
-.article a {
+.prose a {
   @apply text-neutral-100 underline;
 }
 
-.article ul {
+.prose ul {
   @apply list-disc;
 }
 
-.article blockquote {
+.prose blockquote {
   @apply flex flex-row gap-2 before:block before:h-auto before:w-1 before:max-w-[1px] before:bg-red-400 before:content-[''];
 }
 
-.article pre {
+.prose pre {
   @apply p-4;
 }
 
-.article pre > code {
+.prose pre > code {
   @apply bg-transparent;
 }
