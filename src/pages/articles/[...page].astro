@@ -22,7 +22,7 @@ export const prerender = true;
     title={articles.title}
     message={articles.description}
   />
-  <section class="flex flex-col gap-4 md:flex-row md:flex-wrap">
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
     { page?.data.map((article) => (
       <ArticleCard
         publishedAt={article.data.publishedAt}
