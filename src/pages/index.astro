@@ -7,6 +7,7 @@ import SocialLinks from "@/components/SocialLinks.astro";
 import ArticleCard from "@/components/ArticleCard.astro";
 import TalkCard from "@/components/TalkCard.astro";
 import Link from "@/components/Link.astro";
+import Testimonials from "@components/Testimonials.astro";
 import convertAsteriskToStrongTag from "@/utils/convertAsteriskToStrongTag";
 import { site, articles, talks } from "@/consts"
 
@@ -15,13 +16,12 @@ const articleList = (await getCollection("articles")).sort(function (first, seco
 });
 
 const talkList = (await getCollection("talks"));
-
 ---
 
 <Layout>
   <main class="flex flex-col gap-20">
     <article
-      class="flex flex-col gap-8 md:flex-row-reverse md:justify-end md:gap-12"
+      class="flex flex-col gap-8 md:flex-row-reverse md:justify-between md:gap-12"
     >
       {
         site.profile && (
@@ -100,6 +100,9 @@ const talkList = (await getCollection("talks"));
         }
       </section>
     </article>
+
+    <Testimonials />
+    
 
     <article class="flex flex-col gap-8">
       <header class="flex w-full flex-row justify-between gap-2">

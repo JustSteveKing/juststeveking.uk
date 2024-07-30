@@ -10,6 +10,31 @@ const articles = defineCollection({
   }),
 });
 
+const hardware = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    spec: z.string(),
+    description: z.string(),
+  }),
+});
+
+const services = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+  }),
+});
+
+const software = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+  }),
+});
+
 const talks = defineCollection({
   type: "content",
   schema: z.object({
@@ -21,7 +46,22 @@ const talks = defineCollection({
   }),
 });
 
+const testimonials = defineCollection({
+  type: 'data',
+  schema: z.object({
+    name: z.string(),
+    role: z.string(),
+    company: z.string(),
+    avatar: z.string(),
+    content: z.string(),
+  }),
+});
+
 export const collections = {
   articles,
+  hardware,
+  services,
+  software,
   talks,
+  testimonials,
 };

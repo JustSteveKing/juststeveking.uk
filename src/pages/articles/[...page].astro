@@ -11,7 +11,7 @@ export async function getStaticPaths({ paginate }) {
     (article) => ! article.data.draft
   )
 
-  return paginate(data, { pageSize: 2 });
+  return paginate(data, { pageSize: 12 });
 }
 const { page } = Astro.props;
 export const prerender = true;

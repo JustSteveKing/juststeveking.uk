@@ -55,6 +55,16 @@ const pathname = removeTrailingSlash(Astro.url.pathname);
           }}>Talks</a
         >
       </li>
+      <li>/</li>
+      <li>
+        <a
+          href="/uses"
+          class:list={{
+            ["hover:text-indigo-700 dark:hover:text-indigo-400"]: true,
+            ["text-indigo-700 dark:text-indigo-400"]: pathname === "/uses",
+          }}>Uses</a
+        >
+      </li>
     </ul>
   </nav>
 </header>

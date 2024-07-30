@@ -1,0 +1,176 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+const testimonials: CollectionEntry<"testimonials">[] = (await getCollection("testimonials"))
+  .map(value => ({ value, sort: Math.random() }))
+  .sort((a, b) => a.sort - b.sort)
+  .map(({ value }) => value);
+---
+
+<div class="relative isolate">
+    <div class="absolute inset-x-0 top-1/2 -z-10 -translate-y-1/2 transform-gpu overflow-hidden opacity-30 blur-3xl" aria-hidden="true">
+      <div class="ml-[max(50%,38rem)] aspect-[1313/771] w-[82.0625rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+    <div class="absolute inset-x-0 top-0 -z-10 flex transform-gpu overflow-hidden pt-32 opacity-25 blur-3xl sm:pt-40 xl:justify-end" aria-hidden="true">
+      <div class="ml-[-22rem] aspect-[1313/771] w-[82.0625rem] flex-none origin-top-right rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] xl:ml-0 xl:mr-[calc(50%-12rem)]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+    <div class="mx-auto max-w-full">
+      <div class="max-w-[80ch] text-left">
+        <h2 class="text-lg font-semibold leading-8 tracking-tight text-indigo-800 dark:text-indigo-400">
+          Testimonials
+        </h2>
+        <p class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+          What people are saying.
+        </p>
+      </div>
+      <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 grid-rows-1 gap-8 text-sm leading-6 text-gray-900 sm:mt-20 sm:grid-cols-2 xl:mx-0 xl:max-w-none xl:grid-flow-col xl:grid-cols-4">
+        <figure class="rounded-2xl bg-white shadow-lg ring-1 ring-gray-900/5 sm:col-span-2 xl:col-start-2 xl:row-end-1">
+          <blockquote class="p-6 text-lg font-semibold leading-7 tracking-tight text-gray-900 sm:p-12 sm:text-xl sm:leading-8">
+            <p>"{testimonials[0].data.content}"</p>
+          </blockquote>
+          <figcaption class="flex flex-wrap items-center gap-x-4 gap-y-4 border-t border-gray-900/10 px-6 py-4 sm:flex-nowrap">
+            <img class="h-10 w-10 flex-none rounded-full bg-gray-50" src={`${testimonials[0].data.avatar}`} alt={testimonials[0].data.name}>
+            <div class="flex-auto">
+              <div class="font-semibold">{testimonials[0].data.name}</div>
+              <div class="text-gray-600">{testimonials[0].data.role} @ {testimonials[0].data.company}</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <div class="space-y-8 xl:contents xl:space-y-0">
+          <div class="space-y-8 xl:row-span-2">
+
+            <figure class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5">
+              <blockquote class="text-gray-900">
+                <p>"{testimonials[1].data.content}"</p>
+              </blockquote>
+              <figcaption class="mt-6 flex items-center gap-x-4">
+                <img class="h-10 w-10 rounded-full bg-gray-50" src={testimonials[1].data.avatar} alt={testimonials[1].data.name}>
+                <div>
+                  <div class="font-semibold">{testimonials[1].data.name}</div>
+                  <div class="text-gray-600">{testimonials[1].data.role} @ {testimonials[1].data.company}</div>
+                </div>
+              </figcaption>
+            </figure>
+
+            <figure class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5">
+              <blockquote class="text-gray-900">
+                <p>"{testimonials[2].data.content}"</p>
+              </blockquote>
+              <figcaption class="mt-6 flex items-center gap-x-4">
+                <img class="h-10 w-10 rounded-full bg-gray-50" src={testimonials[2].data.avatar} alt={testimonials[2].data.name}>
+                <div>
+                  <div class="font-semibold">{testimonials[2].data.name}</div>
+                  <div class="text-gray-600">{testimonials[2].data.role} @ {testimonials[2].data.company}</div>
+                </div>
+              </figcaption>
+            </figure>
+  
+          </div>
+          <div class="space-y-8 xl:row-start-1">
+
+            <figure class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5">
+              <blockquote class="text-gray-900">
+                <p>"{testimonials[3].data.content}"</p>
+              </blockquote>
+              <figcaption class="mt-6 flex items-center gap-x-4">
+                <img class="h-10 w-10 rounded-full bg-gray-50" src={testimonials[3].data.avatar} alt={testimonials[3].data.name}>
+                <div>
+                  <div class="font-semibold">{testimonials[3].data.name}</div>
+                  <div class="text-gray-600">{testimonials[3].data.role} @ {testimonials[3].data.company}</div>
+                </div>
+              </figcaption>
+            </figure>
+
+            <figure class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5">
+              <blockquote class="text-gray-900">
+                <p>"{testimonials[4].data.content}"</p>
+              </blockquote>
+              <figcaption class="mt-6 flex items-center gap-x-4">
+                <img class="h-10 w-10 rounded-full bg-gray-50" src={testimonials[4].data.avatar} alt={testimonials[4].data.name}>
+                <div>
+                  <div class="font-semibold">{testimonials[4].data.name}</div>
+                  <div class="text-gray-600">{testimonials[4].data.role} @ {testimonials[4].data.company}</div>
+                </div>
+              </figcaption>
+            </figure>
+
+          </div>
+        </div>
+        <div class="space-y-8 xl:contents xl:space-y-0">
+          <div class="space-y-8 xl:row-start-1">
+
+            <figure class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5">
+              <blockquote class="text-gray-900">
+                <p>"{testimonials[5].data.content}"</p>
+              </blockquote>
+              <figcaption class="mt-6 flex items-center gap-x-4">
+                <img class="h-10 w-10 rounded-full bg-gray-50" src={testimonials[5].data.avatar} alt={testimonials[5].data.name}>
+                <div>
+                  <div class="font-semibold">{testimonials[5].data.name}</div>
+                  <div class="text-gray-600">{testimonials[5].data.role} @ {testimonials[5].data.company}</div>
+                </div>
+              </figcaption>
+            </figure>
+
+            <figure class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5">
+              <blockquote class="text-gray-900">
+                <p>"{testimonials[6].data.content}"</p>
+              </blockquote>
+              <figcaption class="mt-6 flex items-center gap-x-4">
+                <img class="h-10 w-10 rounded-full bg-gray-50" src={testimonials[6].data.avatar} alt={testimonials[6].data.name}>
+                <div>
+                  <div class="font-semibold">{testimonials[6].data.name}</div>
+                  <div class="text-gray-600">{testimonials[6].data.role} @ {testimonials[6].data.company}</div>
+                </div>
+              </figcaption>
+            </figure>
+
+          </div>
+          <div class="space-y-8 xl:row-span-2">
+
+            <figure class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5">
+              <blockquote class="text-gray-900">
+                <p>"{testimonials[7].data.content}"</p>
+              </blockquote>
+              <figcaption class="mt-6 flex items-center gap-x-4">
+                <img class="h-10 w-10 rounded-full bg-gray-50" src={testimonials[7].data.avatar} alt={testimonials[7].data.name}>
+                <div>
+                  <div class="font-semibold">{testimonials[7].data.name}</div>
+                  <div class="text-gray-600">{testimonials[7].data.role} @ {testimonials[7].data.company}</div>
+                </div>
+              </figcaption>
+            </figure>
+
+            <figure class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5">
+              <blockquote class="text-gray-900">
+                <p>"{testimonials[8].data.content}"</p>
+              </blockquote>
+              <figcaption class="mt-6 flex items-center gap-x-4">
+                <img class="h-10 w-10 rounded-full bg-gray-50" src={testimonials[8].data.avatar} alt={testimonials[8].data.name}>
+                <div>
+                  <div class="font-semibold">{testimonials[8].data.name}</div>
+                  <div class="text-gray-600">{testimonials[8].data.role} @ {testimonials[8].data.company}</div>
+                </div>
+              </figcaption>
+            </figure>
+
+            <figure class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5">
+              <blockquote class="text-gray-900">
+                <p>"{testimonials[9].data.content}"</p>
+              </blockquote>
+              <figcaption class="mt-6 flex items-center gap-x-4">
+                <img class="h-10 w-10 rounded-full bg-gray-50" src={testimonials[9].data.avatar} alt={testimonials[9].data.name}>
+                <div>
+                  <div class="font-semibold">{testimonials[9].data.name}</div>
+                  <div class="text-gray-600">{testimonials[9].data.role} @ {testimonials[9].data.company}</div>
+                </div>
+              </figcaption>
+            </figure>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

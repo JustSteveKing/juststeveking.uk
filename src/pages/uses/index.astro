@@ -1,0 +1,120 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import { uses } from "@consts";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+const hardware: CollectionEntry<"hardware">[] = await getCollection("hardware");
+const services: CollectionEntry<"services">[] = await getCollection("services");
+const software: CollectionEntry<"software">[] = await getCollection("software");
+---
+
+<Layout title={uses.title} description={uses.description}>
+  <PageHeader title={uses.title} message={uses.description} />
+
+  <section id="hardware" class="py-6">
+    <div class="flex flex-col gap-8">
+      <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+        <div class="lg:col-span-5 space-y-3">
+          <h2 class="text-4xl font-heading font-bold tracking-tight">
+            Hardware
+          </h2>
+          <p class="undefined text-lg leading-7">
+            Devices and equipment that I use.
+          </p>
+        </div>
+        <div class="mt-10 lg:col-span-7 lg:mt-0">
+          <dl class="space-y-10">
+            {hardware.map((item) => (
+              <div class="space-y-3">
+                <dt>
+                  <h3
+                    class="font-semibold text-lg md:text-xl font-body tracking-tight"
+                  >
+                    {item.data.title}
+                  </h3>
+                </dt>
+                <dd>
+                  <p class="undefined text-lg leading-7">
+                    {item.data.description}
+                  </p>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="py-6">
+    <div class="flex flex-col gap-8">
+      <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+        <div class="lg:col-span-5 space-y-3">
+          <h2 class="text-4xl font-heading font-bold tracking-tight">
+            Services
+          </h2>
+          <p class="undefined text-lg leading-7">
+            Services that I use, and would highly recommend.
+          </p>
+        </div>
+        <div class="mt-10 lg:col-span-7 lg:mt-0">
+          <dl class="space-y-10">
+            {services.map((service) => (
+              <div class="space-y-3">
+                <dt>
+                  <h3
+                    class="font-semibold text-lg md:text-xl font-body tracking-tight"
+                  >
+                    {service.data.title}
+                  </h3>
+                </dt>
+                <dd>
+                  <p class="text-lg leading-7">
+                    {service.data.description}
+                  </p>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="software" class="py-6">
+    <div class="flex flex-col gap-8">
+      <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+        <div class="lg:col-span-5 space-y-3">
+          <h2 class="text-4xl font-heading font-bold tracking-tight">
+            Software
+          </h2>
+          <p class="undefined text-lg leading-7">
+            Software that I use to do my day to day work.
+          </p>
+        </div>
+        <div class="mt-10 lg:col-span-7 lg:mt-0">
+          <dl class="space-y-10">
+            {software.map((item) => (
+              <div class="space-y-3">
+                <dt>
+                  <h3
+                    class="font-semibold text-lg md:text-xl font-body tracking-tight"
+                  >
+                    {item.data.title}
+                  </h3>
+                </dt>
+                <dd>
+                  <p class="undefined text-lg leading-7">
+                    {item.data.description}
+                  </p>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

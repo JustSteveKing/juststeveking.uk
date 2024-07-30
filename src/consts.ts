@@ -28,6 +28,11 @@ export const talks: Metadata = {
   description: "Join me as I share insights from conferences and tech events, exploring Laravel, API strategies, and efficient coding. Inspiring content for both new and seasoned developers.",
 };
 
+export const uses: Metadata = {
+  title: "Uses",
+  description: "Software I use, devices I love, and other things I recommend.",
+};
+
 export const socials: Socials = [
   {
     name: 'Twitter',
