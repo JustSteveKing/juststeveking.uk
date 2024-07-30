@@ -1,38 +1,80 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
-import formatDate from "@/utils/formatDate";
+import FormattedDate from "@/components/FormattedDate.astro";
+import BackToPrevious from "@components/BackToPrevious.astro";
+import { readingTime } from "@utils/readingTime";
+import ContentNavigation from "@components/ContentNavigation.astro";
+import Container from "@components/Container.astro";
 
 export async function getStaticPaths() {
-  const articles = await getCollection("articles");
-
-  return articles.map((article) => ({
-    params: { slug: article.slug },
-    props: { article },
+  const articles = (await getCollection("articles"))
+    .filter((post) => !post.data.draft)
+    .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+  return articles.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
   }));
 }
+type Props = CollectionEntry<"articles">;
 
-type Props = {
-  article: CollectionEntry<"articles">;
-};
+const articles = (await getCollection("articles"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 
-const { article } = Astro.props;
-const { Content } = (await article?.render());
+function getNext() {
+  let articleIndex;
+  for (const article of articles) {
+    if (article.slug === Astro.params.slug) {
+      articleIndex = articles.indexOf(article);
+      return articles[articleIndex + 1];
+    }
+  }
+}
+
+function getPrev() {
+  let articleIndex;
+  for (const article of articles) {
+    if (article.slug === Astro.params.slug) {
+      articleIndex = articles.indexOf(article);
+      return articles[articleIndex - 1];
+    }
+  }
+}
+
+const next = getNext();
+const prev = getPrev();
+
+const article = Astro.props;
+const { Content } = await article.render();
+
 export const prerender = true;
 ---
 
 <Layout title={article?.data.title} description={article?.data.description}>
-  <main transition:animate="slide" class="article mx-auto flex w-full max-w-prose flex-col gap-4">
-    <header role="presentation">
-      <h1 class="text-3xl">
-        {article?.data.title}
+  <main transition:animate="fade" class="article mx-auto flex w-full max-w-prose flex-col gap-4">
+    <div class="animate">
+      <BackToPrevious href="/articles">Back to articles</BackToPrevious>
+    </div>
+    <div class="my-10 space-y-1">
+      <div class="animate flex items-center gap-1.5">
+        <div class="font-base text-sm">
+          <FormattedDate date={article.data.publishedAt} />
+        </div>
+        &bull;
+        <div class="font-base text-sm">
+          {readingTime(article.body)}
+        </div>
+      </div>
+      <h1 class="animate text-3xl font-semibold text-black dark:text-white">
+        {article.data.title}
       </h1>
-      <p class="text-md italic opacity-75">
-        {formatDate(article?.data.publishedAt)}
-      </p>
-      <p class="italic">{article?.data.description}</p>
-    </header>
-
-    <Content />
+    </div>
+    <article class="animate prose">
+      <Content />
+      <div class="mt-24">
+        <ContentNavigation prev={prev} next={next} />
+      </div>
+    </article>
   </main>
 </Layout>

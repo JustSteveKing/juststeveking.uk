@@ -1,5 +1,9 @@
 .prose p {
-  @apply leading-7;
+  @apply leading-7 text-slate-900 dark:text-slate-50;
+}
+
+.prose strong {
+  @apply font-semibold leading-7 text-slate-900 dark:text-slate-50;
 }
 
 .prose code {
@@ -7,23 +11,27 @@
 }
 
 .prose h2 {
-  @apply mt-6 text-3xl text-neutral-100;
+  @apply mt-6 text-3xl text-slate-900 dark:text-slate-50;
 }
 
 .prose h3 {
-  @apply mt-4 text-xl text-neutral-100;
+  @apply mt-4 text-xl text-slate-900 dark:text-slate-50;
 }
 
 .prose a {
-  @apply text-neutral-100 underline;
+  @apply text-slate-900 dark:text-slate-50 underline;
 }
 
 .prose ul {
   @apply list-disc;
 }
 
+.prose li {
+  @apply text-slate-900 dark:text-slate-50;
+}
+
 .prose blockquote {
-  @apply flex flex-row gap-2 before:block before:h-auto before:w-1 before:max-w-[1px] before:bg-red-400 before:content-[''];
+  @apply flex flex-col gap-1 before:block before:h-auto before:w-1 before:max-w-[1px] before:bg-red-400 before:content-[''];
 }
 
 .prose pre {
@@ -32,4 +40,25 @@
 
 .prose pre > code {
   @apply bg-transparent;
+}
+
+@keyframes rotate-color {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes rotate-color {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+.animate-gradient {
+  animation: rotate-color 5s linear infinite;
+  -webkit-animation: rotate-color 5s linear infinite;
 }

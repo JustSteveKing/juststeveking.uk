@@ -1,5 +1,5 @@
 ---
-import formatDate from "@/utils/formatDate";
+import {formatDate, datetime} from "@/utils/formatDate";
 
 type Props = {
   title: string;
@@ -11,20 +11,14 @@ type Props = {
 const { title, publishedAt, description, slug } = Astro.props;
 ---
 
-<article class="col-span-1 relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-4 pb-8 pt-80 sm:pt-48 lg:pt-80">
-  <img src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover">
-  <div class="absolute -inset-0 -z-10 bg-gradient-to-t from-slate-50 dark:from-slate-900 via-slate-50/40 dark:via-slate-900/40"></div>
-  <div class="absolute -inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-slate-50/10 dark:ring-slate-900/10"></div>
-
-  <div class="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6">
-    <time datetime={publishedAt} class="mr-8 text-slate-900 dark:text-slate-50">
-      {formatDate(publishedAt)}
-    </time>
-  </div>
-  <h3 class="mt-3 text-lg font-semibold leading-6 text-slate-900 dark:text-slate-50">
-    <a href={`/articles/${slug}`} class="truncate">
-      <span class="absolute inset-0"></span>
-      {title}
+<article class="overflow-hidden group relative rounded-lg p-[1px] flex justify-center items-center">
+  <div class="rounded-lg hidden group-hover:block animate-gradient w-[250%] h-[500%] absolute -top-[60%] -left-[50%] bg-gradient-to-r from-slate-50 dark:from-slate-900 via-slate-700/40 dark:via-slate-300/40 to-slate-300 dark:to-slate-700 shadow-xl"></div>
+    <a class="block h-full w-full relative z-10 rounded-lg bg-slate-50 dark:bg-slate-900 p-6 sm:p-8" href={`/articles/${slug}`}>
+      <div class="mt-16 sm:pr-8">
+        <h3 class="text-xl font-semibold">{title}</h3>
+        <time datetime={datetime(publishedAt)}>{formatDate(publishedAt)}</time>
+        <p class="mt-2 text-sm">{description}</p>
+      </div>
     </a>
-  </h3>
+  </div>
 </article>

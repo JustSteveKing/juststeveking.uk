@@ -63,9 +63,9 @@ const talkList = (await getCollection("talks"));
         <Link href="/articles" label="See all articles" isUnderline target="_self" />
       </header>
 
-      <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <section class="grid grid-cols-1 md:grid-cols-2">
         {
-          articleList.slice(0, 2).map((article) => (
+          articleList.slice(0, 4).map((article) => (
             <ArticleCard
               publishedAt={article.data.publishedAt}
               title={article.data.title}
@@ -84,19 +84,16 @@ const talkList = (await getCollection("talks"));
       </header>
       {talkList.length === 0 && <p>Soon, stay connected 👀...</p>}
 
-      <section class="flex flex-col gap-4 md:flex-row md:flex-wrap">
+      <section class="grid grid-cols-1 md:grid-cols-2">
         {
-          talkList.length !== 0 &&
-					talkList
-              .slice(0, 2)
-              .map((talk) => (
-                <TalkCard
-                  publishedAt={talk.data.publishedAt}
-                  title={talk.data.title}
-                  description={talk.data.description}
-                  slug={talk.slug}
-                />
-              ))
+          talkList.slice(0, 3).map((talk) => (
+            <TalkCard
+              publishedAt={talk.data.publishedAt}
+              title={talk.data.title}
+              description={talk.data.description}
+              slug={talk.slug}
+            />
+          ))
         }
       </section>
     </article>
